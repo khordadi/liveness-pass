@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4.3)
-project(popcorn)
+project(liveness-pass)
 
-add_subdirectory(app)
+add_subdirectory(sample)
 #===============================================================================
 # 1. LOAD LLVM CONFIGURATION
 #===============================================================================
@@ -18,7 +18,7 @@ find_package(LLVM 10.0.0 REQUIRED CONFIG)
 include_directories(SYSTEM ${LLVM_INCLUDE_DIRS})
 
 #===============================================================================
-# 2. LLVM-TUTOR BUILD CONFIGURATION
+# 2. BUILD CONFIGURATION
 #===============================================================================
 # Use the same C++ standard as LLVM does
 set(CMAKE_CXX_STANDARD 14 CACHE STRING "")
@@ -31,7 +31,7 @@ endif()
 #===============================================================================
 # 3. ADD THE TARGET
 #===============================================================================
-add_library(Popcorn SHARED Pass.cpp)
+add_library(Popcorn SHARED Liveness.cpp)
 
 # Allow undefined symbols in shared objects on Darwin (this is the default
 # behaviour on Linux)
